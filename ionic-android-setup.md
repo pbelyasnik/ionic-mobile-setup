@@ -102,7 +102,7 @@ cordova platform add android@12
 
 ### Step 5: Build the Android App
 
-**Important:** Before moving on to this step, please refer to the Component Versions Check section at the end of this page to ensure that all necessary components are installed and compatible. This will help prevent potential issues during the build process.
+**Important:** Before moving on to this step, please refer to the [Component Versions Check](#memo-check-component-versions-and-compatibility) section at the end of this page to ensure that all necessary components are installed and compatible. This will help prevent potential issues during the build process.
 
 Build the Android app in release mode:
 
