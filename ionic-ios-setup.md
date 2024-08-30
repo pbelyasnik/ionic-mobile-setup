@@ -92,9 +92,37 @@ export PATH=/tmp/.spies:$PATH
 cordova platform add ios@latest
 ```
 
-### Step 5: Check Component Versions
+### Step 5: Build the iOS App
 
-Verify the versions of the following components:
+**Important:** Before moving on to this step, please refer to the Component Versions Check section at the end of this page to ensure that all necessary components are installed and compatible. This will help prevent potential issues during the build process.
+
+Build the iOS app in release mode:
+
+```sh
+ionic cordova build ios --prod --release
+```
+
+Zip the iOS app/platform folder (Optional):
+
+```sh
+zip -r app-ios.zip platforms/ios/
+```
+
+### Step 6: Open Xcode and Build Your Project
+
+#### Simplified Instructions:
+
+1. Open Xcode application.
+2. Open your project within Xcode.
+3. Build your project using Xcode's build functionalities.
+
+**Note:** Building directly from the command line might not be suitable for all workflows. Xcode provides a visual interface for project management and building.
+
+---
+
+### Memo: Check Component Versions and Compatibility
+
+Verify the versions of the following components and dependencies:
 
 - **Cocoapods:**
 
@@ -114,14 +142,14 @@ xcodebuild -version
 java -version
 ```
 
-- **Ruby & Ruby Version Manager (Optional):**
+- **Ruby & Ruby Version Manager:**
 
 ```sh
 rbenv version    # If using rbenv
 ruby -v          # Or direct Ruby version check
 ```
 
-- **Python & Python Version Manager (Optional):**
+- **Python & Python Version Manager:**
 
 ```sh
 python -V
@@ -129,7 +157,7 @@ pyenv --version  # If using pyenv
 pip --version    # Package manager for Python
 ```
 
-- **NVM [Node Version Manager] (Optional):**
+- **NVM (Node Version Manager):**
 
 ```sh
 nvm --version
@@ -182,27 +210,3 @@ yarn list --pattern "cordova|ios|^ionic"
 ```sh
 cordova requirements ios
 ```
-
-### Step 6: Build the iOS App
-
-Build the iOS app in release mode:
-
-```sh
-ionic cordova build ios --prod --release
-```
-
-Zip the iOS app/platform folder (Optional):
-
-```sh
-zip -r app-ios.zip platforms/ios/
-```
-
-### Step 7: Open Xcode and Build Your Project
-
-#### Simplified Instructions:
-
-1. Open Xcode application.
-2. Open your project within Xcode.
-3. Build your project using Xcode's build functionalities.
-
-**Note:** Building directly from the command line might not be suitable for all workflows. Xcode provides a visual interface for project management and building.
