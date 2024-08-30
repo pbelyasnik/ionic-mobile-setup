@@ -100,9 +100,79 @@ export PATH=/tmp/.spies:$PATH
 cordova platform add android@12
 ```
 
-### Step 5: Check Component Versions
+### Step 5: Build the Android App
 
-Verify the versions of the following components:
+**Important:** Before moving on to this step, please refer to the Component Versions Check section at the end of this page to ensure that all necessary components are installed and compatible. This will help prevent potential issues during the build process.
+
+Build the Android app in release mode:
+
+```sh
+ionic cordova build android --prod --release
+```
+
+### Step 6: Sign `aab` File Using `bundletool` and Get the `apk` File
+
+#### Download `bundletool`:
+
+```sh
+mkdir bundletool && cd bundletool
+curl -o bundletool.jar -L https://github.com/google/bundletool/releases/download/1.15.4/bundletool-all-1.15.4.jar && chmod +x bundletool.jar
+```
+
+#### Download or create `key.keystore` and `key.properties` files from your desired location:
+
+Substitute the placeholder domain and path with your actual details:
+
+```sh
+curl -o key.keystore -L https://domain.com/path/to/your/key.keystore/file
+curl -o key.properties -L https://domain.com/path/to/your/key.properties/file
+```
+
+#### Put your credentials:
+
+Replace the placeholders with your actual credentials:
+
+```sh
+keypass='ENTER HERE YOUR CREDENTIALS'
+storepass='ENTER HERE YOUR CREDENTIALS'
+alias='ENTER HERE YOUR CREDENTIALS'
+```
+
+#### Sign the app:
+
+1. Copy the `app-release.aab` file (backup version of unsigned app):
+
+```sh
+cp ../platforms/android/app/build/outputs/bundle/release/app-release.aab app-release-unsigned.aab
+```
+
+2. Sign the `aab` file:
+
+```sh
+jarsigner -verbose -sigalg SHA256withRSA -digestalg SHA-256 -keystore key.keystore -storepass $storepass -keypass $keypass -signedjar app-release.aab app-release-unsigned.aab $alias
+```
+
+3. Create the `apks` file:
+
+```sh
+java -jar bundletool.jar build-apks --bundle=app-release.aab --output=app-release.apks --mode=universal --ks-pass=pass:$storepass --key-pass=pass:$keypass --ks key.keystore --ks-key-alias $alias
+```
+
+4. Extract the `apk` file:
+
+```sh
+unzip -p app-release.apks universal.apk > app-release.apk
+```
+
+### Step 7: Installing the App
+
+You can install the application on your phone using the `app-release.apk` file.
+
+---
+
+### Memo: Check Component Versions and Compatibility
+
+Verify the versions of the following components and dependencies:
 
 - **JRE (Java Runtime Environment):**
 
@@ -116,7 +186,7 @@ java -version
 ${ANDROID_HOME}/cmdline-tools/latest/bin/sdkmanager --list_installed
 ```
 
-- **NVM [Node Version Manager] (Optional):**
+- **NVM (Node Version Manager):**
 
 ```sh
 nvm --version
@@ -175,69 +245,3 @@ cordova requirements android
 ```sh
 gradle -v
 ```
-
-### Step 6: Build the Android App
-
-Build the Android app in release mode:
-
-```sh
-ionic cordova build android --prod --release
-```
-
-### Step 7: Sign `aab` File Using `bundletool` and Get the `apk` File
-
-#### Download `bundletool`:
-
-```sh
-mkdir bundletool && cd bundletool
-curl -o bundletool.jar -L https://github.com/google/bundletool/releases/download/1.15.4/bundletool-all-1.15.4.jar && chmod +x bundletool.jar
-```
-
-#### Download or create `key.keystore` and `key.properties` files from your desired location:
-
-Substitute the placeholder domain and path with your actual details:
-
-```sh
-curl -o key.keystore -L https://domain.com/path/to/your/key.keystore/file
-curl -o key.properties -L https://domain.com/path/to/your/key.properties/file
-```
-
-#### Put your credentials:
-
-Replace the placeholders with your actual credentials:
-
-```sh
-keypass='ENTER HERE YOUR CREDENTIALS'
-storepass='ENTER HERE YOUR CREDENTIALS'
-alias='ENTER HERE YOUR CREDENTIALS'
-```
-
-#### Sign the app:
-
-1. Copy the `app-release.aab` file (backup version of unsigned app):
-
-```sh
-cp ../platforms/android/app/build/outputs/bundle/release/app-release.aab app-release-unsigned.aab
-```
-
-2. Sign the `aab` file:
-
-```sh
-jarsigner -verbose -sigalg SHA256withRSA -digestalg SHA-256 -keystore key.keystore -storepass $storepass -keypass $keypass -signedjar app-release.aab app-release-unsigned.aab $alias
-```
-
-3. Create the `apks` file:
-
-```sh
-java -jar bundletool.jar build-apks --bundle=app-release.aab --output=app-release.apks --mode=universal --ks-pass=pass:$storepass --key-pass=pass:$keypass --ks key.keystore --ks-key-alias $alias
-```
-
-4. Extract the `apk` file:
-
-```sh
-unzip -p app-release.apks universal.apk > app-release.apk
-```
-
-### Step 8: Installing the App
-
-You can install the application on your phone using the `app-release.apk` file.
