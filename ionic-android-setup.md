@@ -20,6 +20,8 @@ This comprehensive guide provides step-by-step instructions for configuring your
 - **Project Code:** Your codebase checked out to a local directory.
 - **Project Structure:** A folder named `www` should exist within your project.
 
+---
+
 ### Step 1: Install Software Components
 
 #### Install System Software:
@@ -74,9 +76,9 @@ npm install -g cordova
 
 ### Step 3: Install Local Project Dependencies
 
-**Notes:**
-- Remove all iOS-related packages from your `package.json` file.
-- If you are using `fsevents` plugin, remove it from your `package.json` file as well.
+> **Notes:**
+> - Remove all iOS-related packages from your `package.json` file.
+> - If you are using `fsevents` plugin, remove it from your `package.json` file as well.
 
 Install project dependencies using yarn:
 
@@ -102,7 +104,7 @@ cordova platform add android@12
 
 ### Step 5: Build the Android App
 
-**Important:** Before moving on to this step, please refer to the [Component Versions Check](#memo-check-component-versions-and-compatibility) section at the end of this page to ensure that all necessary components are installed and compatible. This will help prevent potential issues during the build process.
+> **$${\color{red}Important}$$:** Before moving on to this step, please refer to the [Component Versions Check](#memo-check-component-versions-and-compatibility) section at the end of this page to ensure that all necessary components are installed and compatible. This will help prevent potential issues during the build process.
 
 Build the Android app in release mode:
 
@@ -121,7 +123,7 @@ curl -o bundletool.jar -L https://github.com/google/bundletool/releases/download
 
 #### Download or create `key.keystore` and `key.properties` files from your desired location:
 
-Substitute the placeholder domain and path with your actual details:
+> Substitute the placeholder domain and path with your actual details:
 
 ```sh
 curl -o key.keystore -L https://domain.com/path/to/your/key.keystore/file
@@ -130,7 +132,7 @@ curl -o key.properties -L https://domain.com/path/to/your/key.properties/file
 
 #### Put your credentials:
 
-Replace the placeholders with your actual credentials:
+> Replace the placeholders with your actual credentials:
 
 ```sh
 keypass='ENTER HERE YOUR CREDENTIALS'
