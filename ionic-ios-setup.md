@@ -20,6 +20,8 @@ This comprehensive guide provides step-by-step instructions for configuring your
 - **Project Code:** Your codebase checked out to a local directory.
 - **Project Structure:** A folder named `www` should exist within your project.
 
+---
+
 ### Step 1: Fixes for Software Components
 
 - **Activesupport (Xcode >= 15.0.0):**
@@ -41,7 +43,7 @@ export NODE_OPTIONS="--openssl-legacy-provider --no-experimental-fetch"
 export EXCLUDED_ARCHS=arm64
 ```
 
-**Explanation:** These commands address compatibility issues with Xcode versions and package dependencies.
+> **Explanation:** These commands address compatibility issues with Xcode versions and package dependencies.
 
 - **Disable Detached HEAD Warnings:**
 
@@ -49,7 +51,7 @@ export EXCLUDED_ARCHS=arm64
 git config --global advice.detachedHead false
 ```
 
-**Note:** Disables Git's warning when working on a detached HEAD. This can be useful for experimenting without worrying about warnings, but it's important to be aware of the risks associated with detached HEADs.
+> **Note:** Disables Git's warning when working on a detached HEAD. This can be useful for experimenting without worrying about warnings, but it's important to be aware of the risks associated with detached HEADs.
 
 ### Step 2: Install Global Project Dependencies
 
@@ -68,7 +70,7 @@ npm install -g cordova
 
 ### Step 3: Install Local Project Dependencies
 
-- **Note:** Remove all Android-related packages from your `package.json` file.
+> **Note:** Remove all Android-related packages from your `package.json` file.
 
 Install project dependencies using yarn:
 
@@ -94,7 +96,8 @@ cordova platform add ios@latest
 
 ### Step 5: Build the iOS App
 
-**Important:** Before moving on to this step, please refer to the [Component Versions Check](#memo-check-component-versions-and-compatibility) section at the end of this page to ensure that all necessary components are installed and compatible. This will help prevent potential issues during the build process.
+[!IMPORTANT]
+> Before moving on to this step, please refer to the [Component Versions Check](#memo-check-component-versions-and-compatibility) section at the end of this page to ensure that all necessary components are installed and compatible. This will help prevent potential issues during the build process.
 
 Build the iOS app in release mode:
 
@@ -116,7 +119,7 @@ zip -r app-ios.zip platforms/ios/
 2. Open your project within Xcode.
 3. Build your project using Xcode's build functionalities.
 
-**Note:** Building directly from the command line might not be suitable for all workflows. Xcode provides a visual interface for project management and building.
+> **Note:** Building directly from the command line might not be suitable for all workflows. Xcode provides a visual interface for project management and building.
 
 ---
 
