@@ -96,8 +96,7 @@ cordova platform add ios@latest
 
 ### Step 5: Build the iOS App
 
-[!IMPORTANT]
-> Before moving on to this step, please refer to the [Component Versions Check](#memo-check-component-versions-and-compatibility) section at the end of this page to ensure that all necessary components are installed and compatible. This will help prevent potential issues during the build process.
+> **$${\color{red}Important}$$:** Before moving on to this step, please refer to the [Component Versions Check](#memo-check-component-versions-and-compatibility) section at the end of this page to ensure that all necessary components are installed and compatible. This will help prevent potential issues during the build process.
 
 Build the iOS app in release mode:
 
